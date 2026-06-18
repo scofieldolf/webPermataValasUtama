@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 
 // Query untuk mengambil artikel blog / insight valas
 export const ALL_POSTS_QUERY = groq`
-  *[_type == "post" && publishedAt < now()] | order(publishedAt desc) {
+  *[_type == "blogPost" && publishedAt < now()] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -18,7 +18,7 @@ export const ALL_POSTS_QUERY = groq`
 
 // Query untuk detail satu artikel blog berdasarkan slug
 export const POST_DETAIL_QUERY = groq`
-  *[_type == "post" && slug.current == $slug][0] {
+  *[_type == "blogPost" && slug.current == $slug][0] {
     _id,
     title,
     slug,
