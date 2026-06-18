@@ -1,0 +1,859 @@
+
+<style>
+  :root {
+    --gold: #B8860B;
+    --gold-light: #F5E6A3;
+    --gold-dark: #7A5C00;
+    --emerald: #0F6E56;
+    --emerald-light: #E1F5EE;
+    --navy: #042C53;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { font-size: 14px; line-height: 1.7; color: var(--color-text-primary); }
+
+  .prd-wrap { padding: 0.5rem 0; max-width: 680px; }
+
+  .prd-header {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .logo-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--border-radius-md);
+    background: linear-gradient(135deg, #B8860B 0%, #FFD700 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+
+  .prd-header-info { flex: 1; }
+  .prd-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .prd-subtitle { font-size: 13px; color: var(--color-text-secondary); }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+  }
+
+  .meta-label { font-size: 11px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+  .meta-value { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s;
+    margin-bottom: -0.5px;
+  }
+
+  .nav-tab:hover { color: var(--color-text-primary); }
+  .nav-tab.active {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-text-primary);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title i { font-size: 16px; color: var(--color-text-secondary); }
+
+  .prose {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-box {
+    background: var(--color-background-secondary);
+    border-left: 3px solid #B8860B;
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    color: var(--color-text-primary);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 0.875rem 1rem;
+  }
+
+  .feature-card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .icon-gold { background: #F5E6A3; color: #7A5C00; }
+  .icon-teal { background: var(--color-background-info); color: var(--color-text-info); }
+  .icon-green { background: #EAF3DE; color: #3B6D11; }
+  .icon-coral { background: #FAECE7; color: #993C1D; }
+  .icon-purple { background: #EEEDFE; color: #3C3489; }
+
+  .feature-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .feature-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .priority-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+  }
+
+  .p-must { background: #FCEBEB; color: #A32D2D; }
+  .p-should { background: #FAEEDA; color: #854F0B; }
+  .p-nice { background: #EAF3DE; color: #3B6D11; }
+
+  .page-section {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .page-slug { font-size: 11px; font-family: var(--font-mono); color: var(--color-text-tertiary); }
+
+  .page-components {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .component-pill {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 999px;
+    color: var(--color-text-secondary);
+  }
+
+  .tech-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .tech-row:last-child { border-bottom: none; }
+  .tech-category { font-size: 11px; color: var(--color-text-tertiary); width: 100px; flex-shrink: 0; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  .tech-chip {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .kpi-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .kpi-value { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .kpi-label { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+  .timeline-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .timeline-dot.active {
+    background: #B8860B;
+    border-color: #B8860B;
+    color: #fff;
+  }
+
+  .timeline-content { flex: 1; padding-top: 4px; }
+  .timeline-phase { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .timeline-duration { font-size: 11px; color: var(--color-text-secondary); }
+  .timeline-tasks { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; line-height: 1.7; }
+
+  .req-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .req-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 6px 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .req-table td {
+    padding: 7px 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-primary);
+    vertical-align: top;
+  }
+  .req-table tr:last-child td { border-bottom: none; }
+  .req-table td:first-child { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-tertiary); }
+
+  .design-token {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    font-size: 12px;
+  }
+  .design-token:last-child { border-bottom: none; }
+  .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+  .token-name { color: var(--color-text-secondary); width: 110px; flex-shrink: 0; }
+  .token-value { font-family: var(--font-mono); color: var(--color-text-primary); }
+  .token-usage { color: var(--color-text-tertiary); flex: 1; text-align: right; font-size: 11px; }
+</style>
+
+<div class="prd-wrap">
+  <div class="prd-header">
+    <div class="logo-mark">PV</div>
+    <div class="prd-header-info">
+      <div class="prd-title">Product Requirements Document — Company Profile Website</div>
+      <div class="prd-subtitle">Permata Valas Utama · Money Changer & Layanan Valuta Asing</div>
+    </div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="meta-label">Versi</div>
+      <div class="meta-value">v1.0.0</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Status</div>
+      <div class="meta-value">Draft PRD</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Target Launch</div>
+      <div class="meta-value">Q3 2026</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('overview')">Overview</button>
+    <button class="nav-tab" onclick="switchTab('pages')">Halaman & Fitur</button>
+    <button class="nav-tab" onclick="switchTab('design')">Desain</button>
+    <button class="nav-tab" onclick="switchTab('tech')">Tech Stack</button>
+    <button class="nav-tab" onclick="switchTab('nonfunc')">Non-Fungsional</button>
+    <button class="nav-tab" onclick="switchTab('roadmap')">Roadmap</button>
+  </div>
+
+  <div id="tab-overview" class="tab-content active">
+    <div class="section-title"><i class="ti ti-file-description" aria-hidden="true"></i> Latar Belakang & Tujuan</div>
+    <div class="highlight-box">
+      Permata Valas Utama membutuhkan company profile digital yang memperkuat kredibilitas, menarik nasabah baru, dan memberikan informasi kurs real-time — semuanya dalam satu platform yang professional dan terpercaya.
+    </div>
+    <div class="prose">
+      Industri money changer di Indonesia sangat bergantung pada kepercayaan. Website bukan sekadar brosur digital, melainkan titik pertama interaksi calon nasabah dengan brand. Website ini harus memancarkan keamanan, transparansi, dan kompetensi profesional.
+    </div>
+
+    <div class="section-title"><i class="ti ti-target" aria-hidden="true"></i> Target Pengguna</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-gold"><i class="ti ti-user-circle" aria-hidden="true"></i></div>
+          <div class="feature-name">Nasabah Perorangan</div>
+        </div>
+        <div class="feature-desc">Traveler, ekspatriat, pelajar ke luar negeri yang butuh tukar valas dengan kurs kompetitif dan layanan terpercaya.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-teal"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+          <div class="feature-name">Nasabah Korporat</div>
+        </div>
+        <div class="feature-desc">Perusahaan importir/eksportir, agen perjalanan, dan bisnis yang membutuhkan pengelolaan valuta asing secara reguler.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-green"><i class="ti ti-search" aria-hidden="true"></i></div>
+          <div class="feature-name">Prospek Online</div>
+        </div>
+        <div class="feature-desc">Pengguna yang mencari money changer terbaik via Google, ingin membandingkan kurs sebelum datang ke gerai.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-purple"><i class="ti ti-award" aria-hidden="true"></i></div>
+          <div class="feature-name">Mitra & Regulator</div>
+        </div>
+        <div class="feature-desc">Bank koresponden, auditor, dan pengawas (BI/PPATK) yang perlu verifikasi legalitas dan kepatuhan perusahaan.</div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="ti ti-chart-bar" aria-hidden="true"></i> KPI Keberhasilan</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-value">&lt; 2.5s</div>
+        <div class="kpi-label">LCP (Largest Contentful Paint)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">90+</div>
+        <div class="kpi-label">Google PageSpeed Score</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">&lt; 3%</div>
+        <div class="kpi-label">Bounce Rate Target</div>
+      </div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-value">Top 3</div>
+        <div class="kpi-label">SERP "money changer Jakarta"</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">+40%</div>
+        <div class="kpi-label">Konversi walk-in dari web</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">WCAG 2.1</div>
+        <div class="kpi-label">Aksesibilitas AA</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-pages" class="tab-content">
+    <div class="section-title"><i class="ti ti-layout-2" aria-hidden="true"></i> Struktur Halaman</div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Beranda (Homepage) <span class="priority-badge p-must">Must Have</span></div>
+        <div class="page-slug">/</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Halaman utama sebagai wajah brand. Hero section wajib menampilkan kurs live, proposisi nilai utama, dan call-to-action yang jelas.</div>
+      <div class="page-components">
+        <span class="component-pill">Hero + Kurs Live</span>
+        <span class="component-pill">Keunggulan Kami</span>
+        <span class="component-pill">Mata Uang Populer</span>
+        <span class="component-pill">Kalkulator Valas</span>
+        <span class="component-pill">Lokasi Gerai</span>
+        <span class="component-pill">Testimoni</span>
+        <span class="component-pill">Mitra & Sertifikasi</span>
+        <span class="component-pill">CTA WhatsApp</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Kurs Hari Ini <span class="priority-badge p-must">Must Have</span></div>
+        <div class="page-slug">/kurs</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Halaman tabel kurs lengkap yang diupdate real-time atau berkala. Ini adalah halaman dengan traffic SEO tertinggi.</div>
+      <div class="page-components">
+        <span class="component-pill">Tabel Kurs Beli/Jual</span>
+        <span class="component-pill">Timestamp Update</span>
+        <span class="component-pill">Filter Mata Uang</span>
+        <span class="component-pill">Kalkulator Inline</span>
+        <span class="component-pill">Grafik Tren 7 Hari</span>
+        <span class="component-pill">Notifikasi Kurs</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Layanan <span class="priority-badge p-must">Must Have</span></div>
+        <div class="page-slug">/layanan</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Penjelasan detail semua layanan: penukaran tunai, transfer luar negeri, pembelian/penjualan traveler check, dll.</div>
+      <div class="page-components">
+        <span class="component-pill">Tukar Tunai</span>
+        <span class="component-pill">Transfer Valas</span>
+        <span class="component-pill">Bank Notes</span>
+        <span class="component-pill">Layanan Korporat</span>
+        <span class="component-pill">Persyaratan KYC</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Tentang Kami <span class="priority-badge p-must">Must Have</span></div>
+        <div class="page-slug">/tentang</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Membangun kepercayaan melalui sejarah perusahaan, legalitas (izin BI), tim, dan komitmen kepatuhan PPATK.</div>
+      <div class="page-components">
+        <span class="component-pill">Sejarah & Visi</span>
+        <span class="component-pill">Izin BI & Legalitas</span>
+        <span class="component-pill">Tim Manajemen</span>
+        <span class="component-pill">Penghargaan</span>
+        <span class="component-pill">Komitmen AML</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Lokasi <span class="priority-badge p-should">Should Have</span></div>
+        <div class="page-slug">/lokasi</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Peta interaktif semua gerai, jam operasional, nomor telepon per cabang, dan panduan parkir.</div>
+      <div class="page-components">
+        <span class="component-pill">Google Maps Embed</span>
+        <span class="component-pill">Daftar Cabang</span>
+        <span class="component-pill">Jam Operasional</span>
+        <span class="component-pill">Petunjuk Arah</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Kontak & Booking <span class="priority-badge p-should">Should Have</span></div>
+        <div class="page-slug">/kontak</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Form booking kurs (reservasi kurs untuk transaksi besar), WhatsApp Business, email, dan FAQ.</div>
+      <div class="page-components">
+        <span class="component-pill">Form Booking Kurs</span>
+        <span class="component-pill">WhatsApp Business</span>
+        <span class="component-pill">FAQ Accordion</span>
+        <span class="component-pill">Form Kontak</span>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-head">
+        <div class="page-name">Blog / Insight Valas <span class="priority-badge p-nice">Nice to Have</span></div>
+        <div class="page-slug">/insight</div>
+      </div>
+      <div class="prose" style="margin-bottom: 8px;">Konten edukasi dan analisis pasar valas untuk membangun otoritas SEO dan menjaga return visitors.</div>
+      <div class="page-components">
+        <span class="component-pill">Artikel Tips Valas</span>
+        <span class="component-pill">Analisis Pasar</span>
+        <span class="component-pill">Info Kebijakan BI</span>
+        <span class="component-pill">RSS Feed</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-design" class="tab-content">
+    <div class="section-title"><i class="ti ti-palette" aria-hidden="true"></i> Arahan Visual & Brand</div>
+    <div class="highlight-box">
+      <strong>Tone:</strong> Profesional, terpercaya, modern. Terinspirasi dari estetik premium banking Asia Tenggara — bukan sekadar kios tukar uang, melainkan mitra keuangan terpercaya.
+    </div>
+
+    <div class="section-title" style="margin-top: 1rem;"><i class="ti ti-color-swatch" aria-hidden="true"></i> Palet Warna</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+      <div class="design-token">
+        <div class="color-swatch" style="background: #B8860B;"></div>
+        <div class="token-name">Gold Primary</div>
+        <div class="token-value">#B8860B</div>
+        <div class="token-usage">CTA, aksen, highlight</div>
+      </div>
+      <div class="design-token">
+        <div class="color-swatch" style="background: #F5E6A3;"></div>
+        <div class="token-name">Gold Light</div>
+        <div class="token-value">#F5E6A3</div>
+        <div class="token-usage">Background badge, hover state</div>
+      </div>
+      <div class="design-token">
+        <div class="color-swatch" style="background: #042C53;"></div>
+        <div class="token-name">Navy Deep</div>
+        <div class="token-value">#042C53</div>
+        <div class="token-usage">Header, judul utama</div>
+      </div>
+      <div class="design-token">
+        <div class="color-swatch" style="background: #0F6E56;"></div>
+        <div class="token-name">Emerald Trust</div>
+        <div class="token-value">#0F6E56</div>
+        <div class="token-usage">Kurs naik, indikator positif</div>
+      </div>
+      <div class="design-token">
+        <div class="color-swatch" style="background: #A32D2D;"></div>
+        <div class="token-name">Red Signal</div>
+        <div class="token-value">#A32D2D</div>
+        <div class="token-usage">Kurs turun, indikator negatif</div>
+      </div>
+      <div class="design-token">
+        <div class="color-swatch" style="background: #F8F6F0;"></div>
+        <div class="token-name">Ivory Surface</div>
+        <div class="token-value">#F8F6F0</div>
+        <div class="token-usage">Background section alternatif</div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="ti ti-typography" aria-hidden="true"></i> Tipografi</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+      <div class="design-token">
+        <div class="token-name" style="width: 130px;">Display / Heading</div>
+        <div class="token-value">Playfair Display</div>
+        <div class="token-usage">H1, H2 — kesan prestisius</div>
+      </div>
+      <div class="design-token">
+        <div class="token-name" style="width: 130px;">Body / UI</div>
+        <div class="token-value">Inter</div>
+        <div class="token-usage">Semua teks konten & UI</div>
+      </div>
+      <div class="design-token">
+        <div class="token-name" style="width: 130px;">Angka / Kurs</div>
+        <div class="token-value">JetBrains Mono</div>
+        <div class="token-usage">Nilai kurs, angka finansial</div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="ti ti-layout-grid" aria-hidden="true"></i> Komponen UI Kritis</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-gold"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div>
+          <div class="feature-name">Ticker Kurs Live</div>
+        </div>
+        <div class="feature-desc">Scrolling ticker di header menampilkan USD, SGD, JPY, EUR, AUD secara real-time dengan indikator naik/turun.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-teal"><i class="ti ti-calculator" aria-hidden="true"></i></div>
+          <div class="feature-name">Kalkulator Konversi</div>
+        </div>
+        <div class="feature-desc">Input jumlah, pilih mata uang asal dan tujuan, hasil konversi langsung muncul dengan kurs saat ini.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-green"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+          <div class="feature-name">Float WhatsApp CTA</div>
+        </div>
+        <div class="feature-desc">Tombol WhatsApp mengambang di sudut kanan bawah, aktif di semua halaman untuk konversi mudah.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-coral"><i class="ti ti-certificate" aria-hidden="true"></i></div>
+          <div class="feature-name">Badge Legalitas</div>
+        </div>
+        <div class="feature-desc">Logo izin Bank Indonesia, nomor izin PPATK, dan sertifikasi lain ditampilkan prominently untuk membangun trust.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-tech" class="tab-content">
+    <div class="section-title"><i class="ti ti-code" aria-hidden="true"></i> Rekomendasi Tech Stack</div>
+
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+      <div class="tech-row">
+        <div class="tech-category">Framework</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Next.js 14</span>
+          <span class="tech-chip">TypeScript</span>
+          <span class="tech-chip">App Router</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Styling</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Tailwind CSS</span>
+          <span class="tech-chip">shadcn/ui</span>
+          <span class="tech-chip">Framer Motion</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Data Kurs</div>
+        <div class="tech-stack">
+          <span class="tech-chip">ExchangeRate API</span>
+          <span class="tech-chip">Fixer.io</span>
+          <span class="tech-chip">Next.js ISR</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">CMS</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Sanity.io</span>
+          <span class="tech-chip">GROQ</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Maps</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Google Maps API</span>
+          <span class="tech-chip">React Leaflet</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Charts</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Recharts</span>
+          <span class="tech-chip">TradingView Widget</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Analytics</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Vercel Analytics</span>
+          <span class="tech-chip">Google Analytics 4</span>
+          <span class="tech-chip">Hotjar</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Deployment</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Vercel</span>
+          <span class="tech-chip">Cloudflare CDN</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">Notifikasi</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Resend</span>
+          <span class="tech-chip">WhatsApp Cloud API</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-category">SEO</div>
+        <div class="tech-stack">
+          <span class="tech-chip">Next-SEO</span>
+          <span class="tech-chip">Schema.org JSON-LD</span>
+          <span class="tech-chip">Sitemap.xml</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="ti ti-refresh" aria-hidden="true"></i> Strategi Update Kurs</div>
+    <div class="highlight-box">
+      <strong>ISR (Incremental Static Regeneration)</strong> setiap 5 menit untuk halaman kurs. Data kurs disimpan di database (PlanetScale/Supabase) dan dikonsumsi via API Route. Admin dapat trigger manual update melalui webhook Sanity.
+    </div>
+
+    <div class="section-title"><i class="ti ti-shield-check" aria-hidden="true"></i> Keamanan</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem;">
+      <table class="req-table">
+        <tr><th>Area</th><th>Implementasi</th></tr>
+        <tr><td>HTTPS</td><td>SSL/TLS wajib, HSTS enabled</td></tr>
+        <tr><td>Form</td><td>Rate limiting, reCAPTCHA v3</td></tr>
+        <tr><td>API</td><td>API key di environment variable, tidak expose ke client</td></tr>
+        <tr><td>KYC Data</td><td>Tidak menyimpan data sensitif di website — redirect ke app</td></tr>
+        <tr><td>CSP</td><td>Content Security Policy header strict</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-nonfunc" class="tab-content">
+    <div class="section-title"><i class="ti ti-speedboat" aria-hidden="true"></i> Performa</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+      <table class="req-table">
+        <tr><th>Metrik</th><th>Target</th><th>Keterangan</th></tr>
+        <tr><td>LCP</td><td>&lt; 2.5 detik</td><td>Largest Contentful Paint</td></tr>
+        <tr><td>CLS</td><td>&lt; 0.1</td><td>Cumulative Layout Shift</td></tr>
+        <tr><td>FID</td><td>&lt; 100ms</td><td>First Input Delay</td></tr>
+        <tr><td>TTI</td><td>&lt; 3.5 detik</td><td>Time to Interactive</td></tr>
+        <tr><td>Bundle Size</td><td>&lt; 200KB JS</td><td>First load JS gzip</td></tr>
+        <tr><td>Image</td><td>WebP/AVIF</td><td>Next/image otomatis</td></tr>
+      </table>
+    </div>
+
+    <div class="section-title"><i class="ti ti-device-mobile" aria-hidden="true"></i> Responsivitas</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-gold"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
+          <div class="feature-name">Mobile First</div>
+        </div>
+        <div class="feature-desc">Desain dimulai dari viewport 320px, optimal di 375px. Tabel kurs di mobile menggunakan horizontal scroll dengan sticky kolom pertama.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-head">
+          <div class="feature-icon icon-teal"><i class="ti ti-device-tablet" aria-hidden="true"></i></div>
+          <div class="feature-name">Tablet & Desktop</div>
+        </div>
+        <div class="feature-desc">Breakpoint: sm (640), md (768), lg (1024), xl (1280). Grid kurs berubah dari 1 kolom di mobile ke 3 kolom di desktop.</div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="ti ti-world" aria-hidden="true"></i> SEO & Lokalisasi</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+      <table class="req-table">
+        <tr><th>Item</th><th>Spesifikasi</th></tr>
+        <tr><td>Bahasa</td><td>Indonesia (utama) + English (opsional fase 2)</td></tr>
+        <tr><td>Schema.org</td><td>LocalBusiness, FinancialService, ExchangeRateSpecification</td></tr>
+        <tr><td>Meta Tags</td><td>OG tags, Twitter Card, canonical URL</td></tr>
+        <tr><td>Sitemap</td><td>Dynamic sitemap.xml, robots.txt</td></tr>
+        <tr><td>Target Keyword</td><td>"money changer Jakarta", "kurs hari ini", "tukar dollar Jakarta"</td></tr>
+        <tr><td>Google Business</td><td>Integrasi embed review Google Maps</td></tr>
+      </table>
+    </div>
+
+    <div class="section-title"><i class="ti ti-accessible" aria-hidden="true"></i> Aksesibilitas</div>
+    <div class="highlight-box">
+      Target WCAG 2.1 Level AA. Semua tabel kurs harus memiliki caption dan header scope yang benar. Kalkulator valas harus fully keyboard-navigable. Contrast ratio minimal 4.5:1 untuk teks normal.
+    </div>
+  </div>
+
+  <div id="tab-roadmap" class="tab-content">
+    <div class="section-title"><i class="ti ti-calendar" aria-hidden="true"></i> Roadmap Pengembangan</div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot active">1</div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Fase 1 — Foundation <span class="priority-badge p-must">Minggu 1–3</span></div>
+        <div class="timeline-tasks">
+          Setup Next.js 14 + TypeScript + Tailwind · Desain system & komponen base · Integrasi API kurs (mock → live) · Halaman Beranda & Kurs · Deployment ke Vercel (staging)
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot active">2</div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Fase 2 — Core Pages <span class="priority-badge p-must">Minggu 4–6</span></div>
+        <div class="timeline-tasks">
+          Halaman Layanan, Tentang, Lokasi · Kalkulator valas interaktif · Google Maps integrasi · Form kontak + WhatsApp CTA · CMS Sanity setup · SEO on-page
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">3</div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Fase 3 — Enhancement <span class="priority-badge p-should">Minggu 7–9</span></div>
+        <div class="timeline-tasks">
+          Grafik tren kurs 7/30 hari · Form booking kurs (reservasi transaksi besar) · Optimasi performa (Lighthouse 90+) · Google Analytics 4 · Testing lintas browser · Aksesibilitas audit
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">4</div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Fase 4 — Launch & Growth <span class="priority-badge p-nice">Minggu 10–12</span></div>
+        <div class="timeline-tasks">
+          User Acceptance Testing (UAT) · Blog / Insight Valas · Notifikasi kurs via email/WA · SEO content seeding · Submission Google Search Console · Monitor & iterasi
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top: 1.5rem;"><i class="ti ti-list-check" aria-hidden="true"></i> Acceptance Criteria Minimum Launch</div>
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem;">
+      <table class="req-table">
+        <tr><th>#</th><th>Kriteria</th><th>Prioritas</th></tr>
+        <tr><td>AC-01</td><td>Kurs tampil & update otomatis setiap ≤15 menit</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-02</td><td>Kalkulator konversi akurat ±0.01%</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-03</td><td>Website load < 3 detik di koneksi 4G</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-04</td><td>Nomor izin Bank Indonesia tampil di footer</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-05</td><td>Responsif di iPhone 12 dan Galaxy S21</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-06</td><td>Tombol WhatsApp mengarah ke nomor yang benar</td><td><span class="priority-badge p-must">Must</span></td></tr>
+        <tr><td>AC-07</td><td>Semua halaman lolos cek Lighthouse 85+</td><td><span class="priority-badge p-should">Should</span></td></tr>
+        <tr><td>AC-08</td><td>Form kontak terkirim ke email perusahaan</td><td><span class="priority-badge p-should">Should</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

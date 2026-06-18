@@ -1,0 +1,196 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "[SYS] r yanDevOps" [ref=e6] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e7]: "[SYS]"
+        - generic [ref=e8]:
+          - generic [ref=e9]: r
+          - generic [ref=e10]: yanDevOps
+      - generic [ref=e12]:
+        - link "About" [ref=e13] [cursor=pointer]:
+          - /url: "#about"
+          - generic [ref=e14]: About
+        - link "Projects" [ref=e15] [cursor=pointer]:
+          - /url: "#projects"
+          - generic [ref=e16]: Projects
+        - link "Skills" [ref=e17] [cursor=pointer]:
+          - /url: "#skills"
+          - generic [ref=e18]: Skills
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: "#contact"
+          - generic [ref=e20]: Contact
+        - generic [ref=e21]:
+          - link "DOWNLOAD CV" [ref=e22] [cursor=pointer]:
+            - /url: /cv-ryan.pdf
+          - generic [ref=e25]:
+            - button "Set language to English" [ref=e26] [cursor=pointer]: EN
+            - generic [ref=e27]: /
+            - button "Set bahasa ke Indonesia" [ref=e28] [cursor=pointer]: ID
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]: "STATUS: AVAILABLE_FOR_PROJECTS"
+        - heading "Hello, I'm Ryan" [level=1] [ref=e34]
+        - paragraph [ref=e35]: A Fullstack Developer & AI Engineer focused on bridging the gap between intelligent AI models and scalable, high-performance web systems to craft immersive digital experiences.
+        - generic [ref=e36]:
+          - link "CONTACT ME" [ref=e37] [cursor=pointer]:
+            - /url: "#contact"
+          - link "VIEW PROJECTS" [ref=e38] [cursor=pointer]:
+            - /url: "#projects"
+          - link "DOWNLOAD CV" [ref=e39] [cursor=pointer]:
+            - /url: /cv-ryan.pdf
+      - img "Ryan" [ref=e47]
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: "[SECT.02]"
+        - heading "Featured Projects" [level=2] [ref=e51]
+      - generic [ref=e53]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - heading "WaspadaGempa" [level=3] [ref=e58]
+            - paragraph [ref=e59]: An interactive, high-performance disaster monitor and climate hazard tracker for Indonesia. Features real-time seismic plotting on maps, pulsing magnitude metrics, and predictive climate timeline models (2026-2050).
+            - generic [ref=e60]:
+              - generic [ref=e61]: Next.js
+              - generic [ref=e62]: TypeScript
+              - generic [ref=e63]: Tailwind CSS
+              - generic [ref=e64]: Leaflet
+          - generic [ref=e65]:
+            - link "GitHub" [ref=e66] [cursor=pointer]:
+              - /url: https://github.com/scofieldolf/waspadagempa
+              - img [ref=e67]
+              - text: GitHub
+            - generic [ref=e69]: Demo Offline
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - heading "Personal Portfolio Website" [level=3] [ref=e74]
+            - paragraph [ref=e75]: A responsive portfolio website built with Next.js, Tailwind CSS, and TypeScript. Features a modern design with high performance.
+            - generic [ref=e76]:
+              - generic [ref=e77]: Next.js
+              - generic [ref=e78]: TypeScript
+              - generic [ref=e79]: Tailwind CSS
+          - generic [ref=e80]:
+            - link "GitHub" [ref=e81] [cursor=pointer]:
+              - /url: https://github.com/scofieldolf/webPortoRyan
+              - img [ref=e82]
+              - text: GitHub
+            - generic [ref=e84]: Demo Offline
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - heading "E-Commerce Dashboard" [level=3] [ref=e89]
+            - paragraph [ref=e90]: An admin dashboard for managing products, transactions, and sales statistics with interactive chart visualizations.
+            - generic [ref=e91]:
+              - generic [ref=e92]: React
+              - generic [ref=e93]: Chart.js
+              - generic [ref=e94]: Tailwind CSS
+          - generic [ref=e95]:
+            - generic [ref=e96]: No Code
+            - generic [ref=e97]: Demo Offline
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - heading "Task Management App" [level=3] [ref=e102]
+            - paragraph [ref=e103]: A daily task management application featuring drag-and-drop, task categories, and local storage (LocalStorage) persistence.
+            - generic [ref=e104]:
+              - generic [ref=e105]: React
+              - generic [ref=e106]: CSS Modules
+              - generic [ref=e107]: Context API
+          - generic [ref=e108]:
+            - generic [ref=e109]: No Code
+            - generic [ref=e110]: Demo Offline
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - heading "Chat App Interface" [level=3] [ref=e115]
+            - paragraph [ref=e116]: A real-time chat application interface with a minimalist design, online status, and built-in dark mode.
+            - generic [ref=e117]:
+              - generic [ref=e118]: React
+              - generic [ref=e119]: Tailwind CSS
+              - generic [ref=e120]: Socket.io
+          - generic [ref=e121]:
+            - generic [ref=e122]: No Code
+            - generic [ref=e123]: Demo Offline
+        - generic [ref=e126]:
+          - generic [ref=e127]:
+            - heading "Coffee Shop UI Redesign" [level=3] [ref=e128]
+            - paragraph [ref=e129]: A local coffee shop website interface redesign focusing on an intuitive ordering flow and modern aesthetics.
+            - generic [ref=e130]:
+              - generic [ref=e131]: Figma
+              - generic [ref=e132]: Tailwind CSS
+              - generic [ref=e133]: HTML
+          - generic [ref=e134]:
+            - generic [ref=e135]: No Code
+            - generic [ref=e136]: Demo Offline
+    - generic [ref=e137]:
+      - generic [ref=e138]:
+        - generic [ref=e139]: "[SECT.03]"
+        - heading "Skills & Tech Stack" [level=2] [ref=e140]
+      - paragraph [ref=e142]: "A modular map of tools, platforms, and environments I use to build scalable web applications:"
+      - generic [ref=e143]:
+        - generic [ref=e146]:
+          - generic [ref=e147]: "#"
+          - text: HTML5
+        - generic [ref=e150]:
+          - generic [ref=e151]: "#"
+          - text: CSS3
+        - generic [ref=e154]:
+          - generic [ref=e155]: "#"
+          - text: JavaScript
+        - generic [ref=e158]:
+          - generic [ref=e159]: "#"
+          - text: TypeScript
+        - generic [ref=e162]:
+          - generic [ref=e163]: "#"
+          - text: React.js
+        - generic [ref=e166]:
+          - generic [ref=e167]: "#"
+          - text: Next.js
+        - generic [ref=e170]:
+          - generic [ref=e171]: "#"
+          - text: Tailwind CSS
+        - generic [ref=e174]:
+          - generic [ref=e175]: "#"
+          - text: Git & GitHub
+        - generic [ref=e178]:
+          - generic [ref=e179]: "#"
+          - text: Node.js
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - generic [ref=e182]: "[SECT.04]"
+        - heading "Contact Me" [level=2] [ref=e183]
+      - generic [ref=e185]:
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - heading "Let's Build Something Together" [level=3] [ref=e188]
+            - paragraph [ref=e189]: Have an interesting project, a job opportunity, or just want to chat about web engineering? Reach out using the form, or ping me directly on my social lines.
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - generic [ref=e192]: "EMAIL:"
+              - link "i.viryavan@binus.ac.id" [ref=e193] [cursor=pointer]:
+                - /url: mailto:i.viryavan@binus.ac.id
+            - generic [ref=e194]:
+              - generic [ref=e195]: "WHATSAPP:"
+              - link "+087886790981" [ref=e196] [cursor=pointer]:
+                - /url: https://wa.me/6287886790981
+            - generic [ref=e197]:
+              - generic [ref=e198]: "GITHUB:"
+              - link "github.com/scofieldolf" [ref=e199] [cursor=pointer]:
+                - /url: https://github.com/scofieldolf
+            - generic [ref=e200]:
+              - generic [ref=e201]: "LINKEDIN:"
+              - link "www.linkedin.com/in/i-made-viryavan-751766413/" [ref=e202] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/i-made-viryavan-751766413/
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - generic [ref=e206]: Name
+            - textbox "Name" [ref=e207]:
+              - /placeholder: Your Name
+          - generic [ref=e208]:
+            - generic [ref=e209]: Email
+            - textbox "Email" [ref=e210]:
+              - /placeholder: your.email@example.com
+          - generic [ref=e211]:
+            - generic [ref=e212]: Message
+            - textbox "Message" [ref=e213]:
+              - /placeholder: Write your message...
+          - button "Send Message" [ref=e214] [cursor=pointer]
+  - contentinfo [ref=e215]:
+    - paragraph [ref=e217]: © 2026 RYAN. ALL RIGHTS RESERVED.
