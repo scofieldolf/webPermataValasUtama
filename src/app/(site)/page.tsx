@@ -17,8 +17,45 @@ const popularCurrencies = [
 ];
 
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["FinancialService", "LocalBusiness"],
+    "name": "PT Permata Valas Utama",
+    "image": `${SITE_CONFIG.url}/images/og-image.jpg`,
+    "telephon": SITE_CONFIG.contact.phone, // fallback typo check
+    "telephone": SITE_CONFIG.contact.phone,
+    "url": SITE_CONFIG.url,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sudirman Central Business District (SCBD), Gedung Permata Tower Lt. Dasar, Jl. Jend. Sudirman Kav. 52-53",
+      "addressLocality": "Jakarta Selatan",
+      "addressRegion": "DKI Jakarta",
+      "postalCode": "12190",
+      "addressCountry": "ID"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -6.2244,
+      "longitude": 106.8098
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    "priceRange": "$$",
+    "award": `KP: ${SITE_CONFIG.licenseNumber} (Izin KUPU BB Bank Indonesia)`
+  };
+
   return (
     <div className="w-full">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* 1. Hero Section */}
       <section className="relative bg-[#042C53] text-white pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
         {/* Background Decorative Gradient overlay */}
