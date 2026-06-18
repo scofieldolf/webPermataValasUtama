@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { KursTable } from "@/components/kurs/kurs-table";
 import { KalkCalc } from "@/components/kurs/kalk-calc";
+import { KursTrendChart } from "@/components/kurs/kurs-trend-chart";
 import { ShieldCheck, Info } from "lucide-react";
 import type { KursData } from "@/types/kurs";
 
@@ -46,8 +47,9 @@ export default function KursPage() {
       {/* Grid Layout: Table & Side Widgets */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Complete Kurs Table */}
-        <div className="lg:col-span-8 w-full">
+        <div className="lg:col-span-8 w-full space-y-8">
           <KursTable initialRates={mockFullRates} />
+          <KursTrendChart currentRates={mockFullRates} />
         </div>
 
         {/* Right: Calculator & Safe Badging */}

@@ -17,6 +17,11 @@ const customJestConfig = {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
   collectCoverage: true,
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/.next/",
+    "<rootDir>/tests/e2e/",
+  ],
   coverageThreshold: {
     global: {
       branches: 90,

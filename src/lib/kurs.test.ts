@@ -153,4 +153,39 @@ describe("Kurs Logic Module (kurs.ts)", () => {
       consoleWarnSpy.mockRestore();
     });
   });
+
+  describe("getHistoricalRates", () => {
+    it("should return an array of 7 data points with valid values", () => {
+      // @ts-ignore - abaikan error kompilasi sementara untuk TDD RED
+      const { getHistoricalRates } = require("./kurs");
+      const currentBeli = 16250;
+      const currentJual = 16350;
+      const history = getHistoricalRates("USD", currentBeli, currentJual);
+
+      expect(history.length).toBe(7);
+      history.forEach((point: any, idx: number) => {
+        expect(point.hari).toBeDefined();
+        expect(typeof point.hari).toBe("string");
+        expect(point.beli).toBeGreaterThan(0);
+        expect(point.jual).toBeGreaterThan(0);
+        expect(point.beli).toBeLessThan(point.jual);
+
+        // Hari ke-7 (index terakhir) harus sama dengan data saat ini
+        if (idx === 6) {
+          expect(point.beli).toBe(currentBeli);
+          expect(point.jual).toBe(currentJual);
+        }
+      });
+    });
+
+    it("should handle rawBeli >= rawJual scenario by forcing buy rate lower than sell rate", () => {
+      // @ts-ignore
+      const { getHistoricalRates } = require("./kurs");
+      const history = getHistoricalRates("USD", 18000, 17000); // currentBeli > currentJual
+
+      history.forEach((point: any) => {
+        expect(point.beli).toBeLessThan(point.jual);
+      });
+    });
+  });
 });

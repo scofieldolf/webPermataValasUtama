@@ -161,3 +161,75 @@ export async function fetchLatestRates(): Promise<KursResponse> {
     };
   }
 }
+
+/**
+ * Menghasilkan data tren nilai tukar 7 hari terakhir secara historis
+ * untuk simulasi grafik Recharts di halaman kurs.
+ */
+export function getHistoricalRates(
+  kode: KodeMataUang,
+  currentBeli: number,
+  currentJual: number
+): { hari: string; beli: number; jual: number }[] {
+  const points: { hari: string; beli: number; jual: number }[] = [];
+  const today = new Date();
+
+  // Perhitungan spread persentase agar deviasi realistis
+  const deviasiMaksimal = 0.003; // maks 0.3% fluktuasi per hari
+
+  // Validasi protektif awal agar beli selalu < jual
+  let verifiedBeli = currentBeli;
+  let verifiedJual = currentJual;
+  if (verifiedBeli >= verifiedJual) {
+    verifiedBeli = verifiedJual * 0.99;
+  }
+
+  // Buat 7 titik data (6 hari lalu s/d hari ini)
+  for (let i = 6; i >= 0; i--) {
+    const targetDate = new Date(today);
+    targetDate.setDate(today.getDate() - i);
+
+    // Format nama hari + tanggal singkat (misal: "Kamis, 18 Jun" -> "18 Jun")
+    const labelHari = targetDate.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "short",
+    });
+
+    if (i === 0) {
+      // Titik hari ini (hari ke-7) harus pas dengan harga saat ini
+      points.push({
+        hari: labelHari,
+        beli: verifiedBeli,
+        jual: verifiedJual,
+      });
+    } else {
+      // Titik historis ke belakang dihitung dengan fluktuasi acak terkontrol
+      // Kita gunakan benih pseudo-acak sederhana berbasis indeks 'i' dan kode mata uang
+      // agar grafiknya tidak berubah secara liar setiap kali dirender ulang di client
+      const charSum = kode.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      const pseudoRandom = Math.sin(i * 10 + charSum); // nilai di antara [-1, 1]
+
+      const faktorFluktuasi = 1 + pseudoRandom * deviasiMaksimal * (7 - i) * 0.4;
+
+      let rawBeli = verifiedBeli * faktorFluktuasi;
+      let rawJual = verifiedJual * faktorFluktuasi;
+
+      // Pastikan harga beli < jual
+      if (rawBeli >= rawJual) {
+        rawBeli = rawJual * 0.99;
+      }
+
+      // Pembulatan konsisten sesuai mata uang
+      const beli = kode === "JPY" || kode === "KRW" ? Math.round(rawBeli * 100) / 100 : Math.round(rawBeli / 10) * 10;
+      const jual = kode === "JPY" || kode === "KRW" ? Math.round(rawJual * 100) / 100 : Math.round(rawJual / 10) * 10;
+
+      points.push({
+        hari: labelHari,
+        beli,
+        jual,
+      });
+    }
+  }
+
+  return points;
+}

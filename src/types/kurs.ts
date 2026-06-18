@@ -34,3 +34,10 @@ export interface KursResponse {
   rates: KursData[];
   timestamp: string;
 }
+
+export interface HistoricalRatePoint {
+  hari: string;
+  beli: number;
+  jual: number;
+}
+
