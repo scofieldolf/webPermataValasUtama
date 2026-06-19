@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import HomePage from "./page";
+import { SITE_CONFIG } from "@/config/site";
 
 describe("Home Page (Beranda /)", () => {
   it("should render page headings and links successfully", () => {
@@ -27,7 +28,7 @@ describe("Home Page (Beranda /)", () => {
     expect(jsonLdData["@type"]).toContain("LocalBusiness");
     expect(jsonLdData.name).toBe("PT Permata Valas Utama");
     expect(jsonLdData.address.addressLocality).toBe("Jakarta Selatan");
-    expect(jsonLdData.telephone).toBe("+62 21 555 1234");
+    expect(jsonLdData.telephone).toBe(SITE_CONFIG.contact.phone);
     expect(jsonLdData.award).toContain("KP: 12/345/KEP/DIR/2026"); // BI License validation
   });
 });
