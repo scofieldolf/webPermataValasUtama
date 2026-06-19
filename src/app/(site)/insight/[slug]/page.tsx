@@ -60,67 +60,66 @@ export default async function InsightDetailPage({ params }: PageProps) {
   }
 
   if (!post) {
-    notFound();
-    return null;
-  } else {
-    const formattedDate = formatPublishDate(post.publishedAt);
-    const mainImageUrl = post.mainImage ? urlFor(post.mainImage).url() : null;
+    return notFound();
+  }
 
-    return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Back Button */}
-        <div className="mb-8">
-          <Link
-            href="/insight"
-            className="inline-flex items-center text-xs font-semibold text-pv-navy-deep hover:text-pv-gold-primary transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Kembali ke Insight
-          </Link>
+  const formattedDate = formatPublishDate(post.publishedAt);
+  const mainImageUrl = post.mainImage ? urlFor(post.mainImage).url() : null;
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Back Button */}
+      <div className="mb-8">
+        <Link
+          href="/insight"
+          className="inline-flex items-center text-xs font-semibold text-pv-navy-deep hover:text-pv-gold-primary transition-colors group"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Kembali ke Insight
+        </Link>
+      </div>
+
+      <article className="space-y-8">
+        {/* Article Header */}
+        <div className="space-y-4 border-b border-gray-100 pb-6">
+          <h1 className="font-serif text-2xl sm:text-4xl font-extrabold text-pv-navy-deep leading-tight">
+            {post.title}
+          </h1>
+
+          {/* Author and Date */}
+          <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
+            {post.author && (
+              <span className="flex items-center">
+                <User className="w-4 h-4 mr-1.5 text-pv-gold-primary" />
+                {post.author.name}
+              </span>
+            )}
+            <span className="flex items-center">
+              <Calendar className="w-4 h-4 mr-1.5" />
+              {formattedDate}
+            </span>
+          </div>
         </div>
 
-        <article className="space-y-8">
-          {/* Article Header */}
-          <div className="space-y-4 border-b border-gray-100 pb-6">
-            <h1 className="font-serif text-2xl sm:text-4xl font-extrabold text-pv-navy-deep leading-tight">
-              {post.title}
-            </h1>
-
-            {/* Author and Date */}
-            <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
-              {post.author && (
-                <span className="flex items-center">
-                  <User className="w-4 h-4 mr-1.5 text-pv-gold-primary" />
-                  {post.author.name}
-                </span>
-              )}
-              <span className="flex items-center">
-                <Calendar className="w-4 h-4 mr-1.5" />
-                {formattedDate}
-              </span>
-            </div>
+        {/* Hero Image */}
+        {mainImageUrl && (
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-gray-100 bg-gray-50">
+            <Image
+              src={mainImageUrl}
+              alt={post.mainImage?.alt || post.title}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+            />
           </div>
+        )}
 
-          {/* Hero Image */}
-          {mainImageUrl && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-gray-100 bg-gray-50">
-              <Image
-                src={mainImageUrl}
-                alt={post.mainImage?.alt || post.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                className="object-cover"
-              />
-            </div>
-          )}
-
-          {/* Article Body */}
-          <div className="max-w-3xl mx-auto">
-            <PortableTextRenderer value={post.body} />
-          </div>
-        </article>
-      </div>
-    );
-  }
+        {/* Article Body */}
+        <div className="max-w-3xl mx-auto">
+          <PortableTextRenderer value={post.body} />
+        </div>
+      </article>
+    </div>
+  );
 }

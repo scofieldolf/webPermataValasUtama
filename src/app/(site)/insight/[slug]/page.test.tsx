@@ -31,7 +31,7 @@ jest.mock("next/image", () => {
 
 // Mock next/navigation notFound
 jest.mock("next/navigation", () => ({
-  notFound: jest.fn(),
+  notFound: jest.fn().mockImplementation(() => null),
 }));
 
 // Mock PortableTextRenderer
