@@ -36,7 +36,7 @@ export default function LokasiPage() {
               <div className="space-y-1">
                 <span className="text-[10px] uppercase font-bold text-gray-400 block">Alamat Lengkap</span>
                 <p className="leading-relaxed text-pv-navy-deep font-medium">
-                  {SITE_CONFIG.contact.address}
+                  {SITE_CONFIG.contact.address.full}
                 </p>
               </div>
 

@@ -12,8 +12,13 @@ export const SITE_CONFIG = {
     whatsappDisplay: "+62 822-4666-7301",
     phone: "+62 21 5366 4614",
     email: "info@permatavalas.co.id",
-    address:
-      "Mall ITC Permata Hijau, Jl. Arteri Permata Hijau No.01 Lantai Dasar C18, RT.11/RW.10, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210",
+    address: {
+      full: "Mall ITC Permata Hijau, Jl. Arteri Permata Hijau No.01 Lantai Dasar C18, RT.11/RW.10, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210",
+      street: "Mall ITC Permata Hijau, Jl. Arteri Permata Hijau No.01 Lantai Dasar C18",
+      locality: "Jakarta Selatan",
+      region: "DKI Jakarta",
+      postalCode: "12210"
+    },
     mapsEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.254714652259!2d106.80879687498045!3d-6.223482593764655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14cf4c76a59%3A0x89ee1722e0329ff0!2sSudirman%20Central%20Business%20District!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid",
     operatingHours: {

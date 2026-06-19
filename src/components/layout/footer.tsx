@@ -66,7 +66,7 @@ export function Footer() {
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-pv-gold-light flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed text-gray-400">
-                  {SITE_CONFIG.contact.address}
+                  {SITE_CONFIG.contact.address.full}
                 </span>
               </li>
               <li className="flex items-center space-x-3">

@@ -8,7 +8,7 @@ describe("Lokasi Page", () => {
     render(<LokasiPage />);
 
     expect(screen.getByText("Lokasi Cabang Kami")).toBeInTheDocument();
-    expect(screen.getByText(SITE_CONFIG.contact.address)).toBeInTheDocument();
+    expect(screen.getByText(SITE_CONFIG.contact.address.full)).toBeInTheDocument();
   });
 
   it("should render operating hours dynamically from SITE_CONFIG", () => {

@@ -163,7 +163,7 @@ export default function KontakPage() {
             <div className="space-y-3.5 text-xs text-gray-600">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-pv-gold-primary mt-0.5 flex-shrink-0" />
-                <span>{SITE_CONFIG.contact.address}</span>
+                <span>{SITE_CONFIG.contact.address.full}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-pv-gold-primary flex-shrink-0" />

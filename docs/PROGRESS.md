@@ -84,6 +84,7 @@
     *   Verifikasi sukses 100% untuk `tsc --noEmit` dan `next build` dengan `NODE_ENV=production`.
     *   Melakukan git commit dan git push semua perubahan Fase 3 & 4 ke branch `main` GitHub `webPermataValasUtama`.
     *   *Analytics Integration:* Mengimplementasikan Vercel Analytics (`@vercel/analytics`) dan Google Analytics 4 (`@next/third-parties/google`) di root layout untuk production environment.
+    *   *Company Info Update:* Memperbarui data alamat (ITC Permata Hijau), nomor WhatsApp (0822-4666-7301), dan jam operasional baru. Melakukan refaktorisasi pada `SITE_CONFIG` untuk menyajikan data alamat secara terstruktur demi kebersihan data JSON-LD dan tampilan halaman Lokasi secara dinamis. Unit test disesuaikan dan lulus 100% dengan branch coverage di atas 91%.
 
 ---
 

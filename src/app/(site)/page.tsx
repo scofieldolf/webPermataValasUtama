@@ -17,15 +17,6 @@ const popularCurrencies = [
 ];
 
 export default function HomePage() {
-  // Dynamically extract address details from SITE_CONFIG.contact.address
-  const addressParts = SITE_CONFIG.contact.address.split(",").map((part) => part.trim());
-  const streetAddress = addressParts.slice(0, 2).join(", ");
-  const localityPart = addressParts.find((part) => part.toLowerCase().includes("jakarta selatan")) || "Jakarta Selatan";
-  const addressLocality = localityPart.replace(/^(Kota|Kabupaten)\s+/i, "");
-  const regionPart = addressParts.find((part) => part.toLowerCase().includes("jakarta") && part !== localityPart) || "DKI Jakarta";
-  const addressRegion = regionPart.includes("Daerah Khusus Ibukota Jakarta") ? "DKI Jakarta" : regionPart.replace(/\d{5}/g, "").trim();
-  const postalCode = SITE_CONFIG.contact.address.match(/\b\d{5}\b/)?.[0] || "12210";
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["FinancialService", "LocalBusiness"],
@@ -36,10 +27,10 @@ export default function HomePage() {
     "url": SITE_CONFIG.url,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": streetAddress,
-      "addressLocality": addressLocality,
-      "addressRegion": addressRegion,
-      "postalCode": postalCode,
+      "streetAddress": SITE_CONFIG.contact.address.street,
+      "addressLocality": SITE_CONFIG.contact.address.locality,
+      "addressRegion": SITE_CONFIG.contact.address.region,
+      "postalCode": SITE_CONFIG.contact.address.postalCode,
       "addressCountry": "ID"
     },
     "geo": {
