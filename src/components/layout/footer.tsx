@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
@@ -15,9 +16,13 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-pv-gold-primary to-yellow-500 flex items-center justify-center font-bold text-white text-lg">
-                PV
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="Logo PT Permata Valas Utama"
+                width={36}
+                height={36}
+                className="w-9 h-9 rounded-lg object-contain bg-white/10 p-0.5"
+              />
               <div className="flex flex-col">
                 <span className="font-serif font-bold text-base leading-tight text-white tracking-tight">
                   PERMATA VALAS
