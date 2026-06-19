@@ -65,11 +65,11 @@ export default function LokasiPage() {
                 <span className="text-[10px] uppercase font-bold text-gray-400 block">Jam Operasional</span>
                 <div className="flex items-center space-x-2 text-xs text-pv-navy-deep font-semibold">
                   <Clock className="w-4 h-4 text-pv-gold-primary" />
-                  <span>Senin - Jumat: 08:30 - 17:00 WIB</span>
+                  <span>{SITE_CONFIG.contact.operatingHours.weekdays.days}: {SITE_CONFIG.contact.operatingHours.weekdays.time}</span>
                 </div>
-                <div className="flex items-center space-x-2 text-xs text-gray-400">
-                  <Clock className="w-4 h-4 text-transparent" />
-                  <span>Sabtu - Minggu & Hari Libur: Tutup</span>
+                <div className="flex items-center space-x-2 text-xs text-pv-navy-deep font-semibold">
+                  <Clock className="w-4 h-4 text-emerald-600" />
+                  <span>{SITE_CONFIG.contact.operatingHours.weekends.days}: {SITE_CONFIG.contact.operatingHours.weekends.time}</span>
                 </div>
               </div>
             </div>
