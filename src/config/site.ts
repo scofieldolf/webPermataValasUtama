@@ -8,14 +8,18 @@ export const SITE_CONFIG = {
   url: "https://permatavalas.co.id", // Placeholder production URL
   licenseNumber: "KP: 12/345/KEP/DIR/2026", // Mock izin resmi Bank Indonesia
   contact: {
-    whatsapp: "6281234567890", // Format internasional tanpa '+'
-    whatsappDisplay: "+62 812-3456-7890",
-    phone: "+62 21 555 1234",
+    whatsapp: "6282246667301", // Format internasional tanpa '+'
+    whatsappDisplay: "+62 822-4666-7301",
+    phone: "+62 21 5366 4614",
     email: "info@permatavalas.co.id",
     address:
-      "Sudirman Central Business District (SCBD), Gedung Permata Tower Lt. Dasar, Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan, 12190",
+      "Mall ITC Permata Hijau, Jl. Arteri Permata Hijau No.01 Lantai Dasar C18, RT.11/RW.10, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210",
     mapsEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.254714652259!2d106.80879687498045!3d-6.223482593764655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14cf4c76a59%3A0x89ee1722e0329ff0!2sSudirman%20Central%20Business%20District!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid",
+    operatingHours: {
+      weekdays: { days: "Senin - Jumat", time: "09.00 - 19.00 WIB", opens: "09:00", closes: "19:00" },
+      weekends: { days: "Sabtu - Minggu & Hari Libur", time: "10.00 - 18.00 WIB", opens: "10:00", closes: "18:00" }
+    }
   },
   socials: {
     instagram: "https://instagram.com/permatavalas",
