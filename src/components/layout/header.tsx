@@ -63,11 +63,18 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-sm font-semibold transition-colors duration-200 py-2 border-b-2",
+                    "text-sm font-semibold transition-colors duration-200 py-2 border-b-2 outline-none",
+                    "focus-visible:ring-2 focus-visible:ring-pv-gold-primary focus-visible:ring-offset-2 focus-visible:rounded-md",
                     isActive
                       ? "text-pv-navy-deep border-pv-gold-primary"
                       : "text-gray-500 border-transparent hover:text-pv-navy-deep hover:border-pv-gold-light"
                   )}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      e.currentTarget.click();
+                    }
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -113,8 +120,15 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      e.currentTarget.click();
+                    }
+                  }}
                   className={cn(
-                    "block px-3 py-3 rounded-md text-base font-semibold transition-colors",
+                    "block px-3 py-3 rounded-md text-base font-semibold transition-colors outline-none",
+                    "focus-visible:ring-2 focus-visible:ring-pv-gold-primary focus-visible:ring-offset-2",
                     isActive
                       ? "bg-pv-ivory-surface text-pv-navy-deep border-l-4 border-pv-gold-primary"
                       : "text-gray-600 hover:bg-gray-50 hover:text-pv-navy-deep"
