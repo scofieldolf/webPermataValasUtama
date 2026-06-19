@@ -20,7 +20,7 @@ export const SITE_CONFIG = {
       postalCode: "12210"
     },
     mapsEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.254714652259!2d106.80879687498045!3d-6.223482593764655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14cf4c76a59%3A0x89ee1722e0329ff0!2sSudirman%20Central%20Business%20District!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2625290610363!2d106.7811124!3d-6.2208616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1165384102d%3A0x6e9ee5eb61ff795d!2sGrand%20ITC%20Permata%20Hijau!5e0!3m2!1sid!2sid!4v1718812800000!5m2!1sid!2sid",
     operatingHours: {
       weekdays: { days: "Senin - Jumat", time: "09.00 - 19.00 WIB", opens: "09:00", closes: "19:00" },
       weekends: { days: "Sabtu - Minggu & Hari Libur", time: "10.00 - 18.00 WIB", opens: "10:00", closes: "18:00" }
