@@ -76,11 +76,6 @@
 }
 
 /* Custom Utilities for Permata Valas */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #B8860B 0%, #FFD700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* Hide Scrollbar for Horizontal Ticker */
 .no-scrollbar::-webkit-scrollbar {
