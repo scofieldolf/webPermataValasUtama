@@ -2,7 +2,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schema } from "./sanity/schema";
-import { SANITY_CONFIG } from "./sanity/config";
+import { SANITY_CONFIG } from "./src/lib/sanity/config";
 
 export default defineConfig({
   basePath: "/studio",
