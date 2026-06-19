@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ShieldCheck, Landmark, Users, Award, CheckCircle } from "lucide-react";
+import { ShieldCheck, Landmark } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 export const metadata: Metadata = {

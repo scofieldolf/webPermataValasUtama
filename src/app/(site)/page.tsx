@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Shield, Sparkles, MapPin, BadgeCheck, CheckCircle2, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { Shield, Sparkles, BadgeCheck, CheckCircle2, TrendingUp, ArrowRight } from "lucide-react";
 import { KalkCalc } from "@/components/kurs/kalk-calc";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";

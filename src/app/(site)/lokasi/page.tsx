@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { MapPin, Phone, MessageSquare, Clock, Map, Compass } from "lucide-react";
+import { MapPin, MessageSquare, Clock, Compass } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 export const metadata: Metadata = {

@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import { ShieldAlert, Landmark, CircleDollarSign, ArrowRightLeft, FileSpreadsheet, CheckCircle } from "lucide-react";
-import { SITE_CONFIG } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Layanan Penukaran Valas",

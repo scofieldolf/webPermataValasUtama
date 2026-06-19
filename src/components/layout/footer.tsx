@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 export function Footer() {
