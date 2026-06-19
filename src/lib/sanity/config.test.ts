@@ -1,5 +1,3 @@
-import { SANITY_CONFIG } from "./config";
-
 describe("Sanity Configuration Sanitization", () => {
   const originalEnv = process.env;
 

@@ -1,5 +1,4 @@
 import type { KursData, KodeMataUang, KursResponse } from "@/types/kurs";
-import { SITE_CONFIG } from "@/config/site";
 
 // Mock rates dasar jika API key tidak tersedia atau kuota habis
 const BASE_MOCK_MID_RATES: Record<KodeMataUang, number> = {

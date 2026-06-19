@@ -19,7 +19,7 @@ jest.mock("recharts", () => {
       return <div data-testid="y-axis" />;
     },
     CartesianGrid: () => <div data-testid="cartesian-grid" />,
-    Tooltip: ({ content, active, payload, label }: any) => {
+    Tooltip: ({ content, label }: any) => {
       // Panggil custom tooltip secara manual dengan berbagai variasi props untuk menguji koverasi 100%
       const lab = label ?? "18 Jun";
 
@@ -117,7 +117,7 @@ describe("KursTrendChart Component", () => {
     // Di sini kita bisa menguji CustomTooltip secara terpisah jika kita me-mock Tooltip
     // secara fleksibel. Mari kita update mock Tooltip di atas untuk mendukung testing ini.
     // Kita cukup menambahkan render manual Tooltip dengan props berbeda.
-    const { rerender } = render(<KursTrendChart currentRates={mockRates} />);
+    render(<KursTrendChart currentRates={mockRates} />);
 
     // Di mock kita, kita secara default mengirimkan active: true dan payload valid.
     // Kita bisa memodifikasi mock Tooltip di file test kita agar ia dinonaktifkan jika kita melewatkan flag tertentu,
