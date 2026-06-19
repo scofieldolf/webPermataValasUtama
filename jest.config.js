@@ -18,9 +18,9 @@ const customJestConfig = {
   },
   collectCoverage: true,
   testPathIgnorePatterns: [
-    "<rootDir>/node_modules/",
-    "<rootDir>/.next/",
-    "<rootDir>/tests/e2e/",
+    "/node_modules/",
+    "/.next/",
+    "/tests/e2e/",
   ],
   coverageThreshold: {
     global: {
