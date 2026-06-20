@@ -51,9 +51,12 @@ const customComponents: PortableTextComponents = {
     em: ({ children }) => <em className="italic">{children}</em>,
     link: ({ value, children }) => {
       const href = value?.href || "#";
+      // Pastikan URL aman untuk mencegah XSS melalui protokol berbahaya seperti javascript:
+      const isSafe = /^(https?:\/\/|mailto:|tel:|\/)/i.test(href);
+      const safeHref = isSafe ? href : "#";
       return (
         <a
-          href={href}
+          href={safeHref}
           target="_blank"
           rel="noopener noreferrer"
           className="text-pv-gold-primary hover:underline font-semibold"

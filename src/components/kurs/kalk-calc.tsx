@@ -172,7 +172,9 @@ export function KalkCalc() {
         {/* Call to Action */}
         <div className="pt-2">
           <a
-            href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=Halo%20Permata%20Valas%2C%20saya%20ingin%20reservasi%20tukar%20${amount}%20${currency}%20dengan%20estimasi%20kurs%20Rp%20${formatNumber(activeRate)}`}
+            href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(
+              `Halo Permata Valas, saya ingin reservasi tukar ${amount} ${currency} dengan estimasi kurs Rp ${formatNumber(activeRate)}`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-pv-gold-primary hover:bg-pv-gold-dark text-white text-xs font-bold shadow hover:shadow-md transition-all duration-200"
