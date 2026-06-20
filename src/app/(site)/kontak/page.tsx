@@ -209,7 +209,7 @@ export default function KontakPage() {
               Reservasi / Booking Kurs
             </h3>
             <p className="text-[11px] text-gray-500 mb-5 leading-normal">
-              Pesan mata uang asing Anda secara online dan ambil di gerai SCBD kami untuk mengamankan persediaan fisik bank notes dan mengunci kurs referensi harian.
+              Pesan mata uang asing Anda secara online dan ambil di gerai ITC Permata Hijau kami untuk mengamankan persediaan fisik bank notes dan mengunci kurs referensi harian.
             </p>
 
             {bookingStatus === "success" ? (

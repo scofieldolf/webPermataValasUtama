@@ -349,7 +349,7 @@ export default function HomePage() {
             <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm space-y-3">
               <div className="flex items-center space-x-1 text-yellow-500 text-sm">★★★★★</div>
               <p className="text-xs text-gray-500 italic leading-relaxed">
-                &quot;Lokasinya sangat strategis di pusat SCBD. Kurs selalu di-update transparan di web sebelum kita datang, jadi tidak ada manipulasi rate tersembunyi. Highly recommended!&quot;
+                &quot;Lokasinya sangat strategis di ITC Permata Hijau. Kurs selalu di-update transparan di web sebelum kita datang, jadi tidak ada manipulasi rate tersembunyi. Highly recommended!&quot;
               </p>
               <div className="border-t border-gray-100 pt-3 flex items-center justify-between text-[11px]">
                 <span className="font-bold text-pv-navy-deep">Amanda Clarissa</span>

@@ -113,6 +113,23 @@
 
 ---
 
+## ADR-007: Halaman Kepatuhan Hukum (BI Compliance) sebagai Rute Statis (SSG)
+
+**Tanggal:** 2026-06-20
+**Status:** Accepted
+
+**Keputusan:** Membuat halaman `/kebijakan-privasi` dan `/syarat-ketentuan` sebagai halaman statis (Static Site Generation/SSG) Next.js Server Components.
+
+**Alasan:**
+- Regulasi Bank Indonesia mewajibkan Penyelenggara KUPU BB untuk mempublikasikan kebijakan perlindungan konsumen dan syarat transaksi penukaran uang secara transparan sebelum website dirilis.
+- Halaman legal ini memiliki isi teks yang statis dan jarang berubah, sehingga sangat ideal dijadikan rute statis (SSG) demi kecepatan muat halaman yang instan (0 ms cold start) dan performa SEO terbaik.
+- Mengintegrasikan metadata SEO Next.js secara eksplisit di level server untuk meningkatkan kredibilitas di pencarian Google.
+
+**Konsekuensi:**
+- Perubahan isi kebijakan hukum di masa depan memerlukan pembaruan berkas kode secara manual dan kompilasi ulang (rebuild) proyek Next.js.
+
+---
+
 ## Template ADR Baru
 
 ```markdown

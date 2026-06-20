@@ -6,7 +6,7 @@ import { SITE_CONFIG } from "@/config/site";
 export const metadata: Metadata = {
   title: "Lokasi Cabang & Kontak",
   description:
-    "Kunjungi kantor PT Permata Valas Utama di SCBD Jakarta Selatan. Peta lokasi, alamat lengkap, jam operasional, nomor telepon, dan petunjuk arah cabang.",
+    "Kunjungi kantor PT Permata Valas Utama di Mall ITC Permata Hijau Jakarta Selatan. Peta lokasi, alamat lengkap, jam operasional, nomor telepon, dan petunjuk arah cabang.",
 };
 
 export default function LokasiPage() {
@@ -29,7 +29,7 @@ export default function LokasiPage() {
           <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-5">
             <h3 className="font-serif text-lg font-bold text-pv-navy-deep flex items-center">
               <MapPin className="w-5 h-5 mr-2 text-pv-gold-primary" />
-              Cabang Utama SCBD
+              Cabang Utama ITC Permata Hijau
             </h3>
 
             <div className="space-y-4 text-xs sm:text-sm text-gray-600">
@@ -81,15 +81,18 @@ export default function LokasiPage() {
               <Compass className="w-4 h-4 mr-2 text-pv-gold-primary" />
               Petunjuk Akses Ke Gerai
             </h4>
-            <ul className="text-xs text-gray-500 space-y-2 leading-relaxed">
+            <ul className="text-xs text-gray-500 space-y-3 leading-relaxed">
               <li>
-                <strong className="text-pv-navy-deep">Kendaraan Pribadi:</strong> Masuk melalui gerbang SCBD Senopati atau Sudirman, ikuti petunjuk jalan ke arah Permata Tower. Gedung menyediakan parkir basement yang aman.
+                <strong className="text-pv-navy-deep block mb-0.5">Kendaraan Pribadi:</strong> Masuk melalui gerbang utama ITC Permata Hijau (bisa diakses dari Jl. Letjen Supomo atau Jl. Arteri Permata Hijau). Anda dapat langsung menuju ke area parkir gedung atau area parkir basement yang aman. Setelah memarkirkan kendaraan, silakan menuju ke Lantai Dasar. Gerai kami terletak di Blok C 18 No. 1 (tepat di dekat Kopi Dari Hati).
               </li>
               <li>
-                <strong className="text-pv-navy-deep">Transportasi Publik (MRT):</strong> Turun di Stasiun MRT Istora Mandiri, keluar ke arah SCBD. Anda dapat berjalan kaki sekitar 5 menit atau menggunakan layanan shuttle bus internal SCBD.
+                <strong className="text-pv-navy-deep block mb-0.5">Transportasi Publik (Transjakarta):</strong> Turun di Halte BRT Permata Hijau (Koridor 8). Dari halte, Anda cukup berjalan kaki sekitar 2–3 menit menuju pintu masuk utama ITC Permata Hijau, lalu masuk ke area Lantai Dasar untuk menemukan gerai kami di Blok C 18 No. 1.
               </li>
               <li>
-                <strong className="text-pv-navy-deep">Keamanan Transaksi:</strong> Gerai kami dilengkapi dengan pengamanan CCTV 24 jam serta petugas sekuriti gedung yang berjaga untuk keamanan transaksi valas Anda.
+                <strong className="text-pv-navy-deep block mb-0.5">Transportasi Publik (KRL Commuter Line):</strong> Turun di Stasiun Kebayoran. Dari stasiun, Anda bisa melanjutkan perjalanan menggunakan transportasi daring (online) dengan waktu tempuh sekitar 5–10 menit menuju lokasi ITC Permata Hijau.
+              </li>
+              <li>
+                <strong className="text-pv-navy-deep block mb-0.5">Keamanan Transaksi:</strong> Kenyamanan dan privasi Anda adalah prioritas kami. Gerai kami dilengkapi dengan pengamanan CCTV 24 jam penuh, serta didukung oleh tim sekuriti gedung yang berjaga ketat untuk memastikan seluruh proses transaksi valas Anda berjalan dengan aman dan lancar.
               </li>
             </ul>
           </div>
@@ -105,7 +108,7 @@ export default function LokasiPage() {
             allowFullScreen={false}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Peta Lokasi Kantor Utama PT Permata Valas Utama SCBD"
+            title="Peta Lokasi Kantor Utama PT Permata Valas Utama ITC Permata Hijau"
           ></iframe>
         </div>
       </div>

@@ -85,7 +85,7 @@ export default function LayananPage() {
             </div>
             <h3 className="font-serif text-xl font-bold text-pv-navy-deep">Reservasi / Booking Kurs</h3>
             <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-              Hindari risiko kehabisan stok fisik mata uang asing atau pergeseran kurs yang drastis. Anda dapat memesan nominal valas yang diinginkan terlebih dahulu secara online dan mengambilnya di cabang SCBD kami sesuai jadwal.
+              Hindari risiko kehabisan stok fisik mata uang asing atau pergeseran kurs yang drastis. Anda dapat memesan nominal valas yang diinginkan terlebih dahulu secara online dan mengambilnya di cabang ITC Permata Hijau kami sesuai jadwal.
             </p>
             <ul className="text-xs text-gray-500 space-y-2 pt-2">
               <li className="flex items-center"><CheckCircle className="w-3.5 h-3.5 mr-2 text-pv-gold-primary" /> Penguncian nilai kurs selama 2 jam</li>

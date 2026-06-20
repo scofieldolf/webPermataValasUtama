@@ -89,6 +89,7 @@ test.describe("PT Permata Valas Utama - Critical User Paths E2E Tests", () => {
 
     // Isi formulir booking
     await page.locator("#booking-name").fill("Jane Doe Test");
+    await page.locator("#booking-email").fill("janedoe@test.com");
     await page.locator("#booking-phone").fill("089876543210");
     await page.locator("#booking-currency").selectOption("EUR");
     await page.locator("#booking-amount").fill("5000");
@@ -96,12 +97,9 @@ test.describe("PT Permata Valas Utama - Critical User Paths E2E Tests", () => {
     // Klik submit
     await page.locator('button:has-text("Kirim Pengajuan Booking")').click();
 
-    // Tunggu durasi pengiriman 1.5 detik
-    await page.waitForTimeout(2000);
-
-    // Verifikasi kemunculan Kode Booking
+    // Verifikasi kemunculan Kode Booking (dengan dynamic waiting hingga 5 detik)
     const successTitle = page.locator("text=Reservasi Anda Terdaftar");
-    await expect(successTitle).toBeVisible();
+    await expect(successTitle).toBeVisible({ timeout: 5000 });
 
     const bookingCode = page.locator("text=PV-");
     await expect(bookingCode).toBeVisible();
@@ -112,12 +110,44 @@ test.describe("PT Permata Valas Utama - Critical User Paths E2E Tests", () => {
     await page.goto("/lokasi");
 
     // Memastikan alamat cabang utama tampil di bagian main content
-    const addressText = page.locator("main").locator("text=Sudirman Central Business District").first();
+    const addressText = page.locator("main").locator("text=Mall ITC Permata Hijau").first();
     await expect(addressText).toBeVisible();
 
     // Memastikan Google Maps iframe ter-render
     const mapsIframe = page.locator('iframe[title*="Peta Lokasi Kantor Utama"]');
     await expect(mapsIframe).toBeVisible();
+  });
+
+  // 7. Legal: Read privacy policy content
+  test("Legal: Read privacy policy content", async ({ page }) => {
+    await page.goto("/kebijakan-privasi");
+
+    // Verifikasi Title Tag Ramah SEO
+    await expect(page).toHaveTitle(/Kebijakan Privasi | PT Permata Valas Utama/);
+
+    // Verifikasi judul utama halaman
+    const h1 = page.locator("h1");
+    await expect(h1).toContainText("Kebijakan Privasi");
+
+    // Verifikasi adanya teks konten pelindungan data & KYC/AML
+    const kycText = page.locator("text=Kepatuhan Hukum KYC & AML");
+    await expect(kycText).toBeVisible();
+  });
+
+  // 8. Legal: Read terms and conditions content
+  test("Legal: Read terms and conditions content", async ({ page }) => {
+    await page.goto("/syarat-ketentuan");
+
+    // Verifikasi Title Tag Ramah SEO
+    await expect(page).toHaveTitle(/Syarat & Ketentuan | PT Permata Valas Utama/);
+
+    // Verifikasi judul utama halaman
+    const h1 = page.locator("h1");
+    await expect(h1).toContainText("Syarat & Ketentuan");
+
+    // Verifikasi adanya teks ketentuan dokumen pendukung underlying document
+    const underlyingText = page.locator("text=Underlying Documents").first();
+    await expect(underlyingText).toBeVisible();
   });
 
 });

@@ -46,7 +46,7 @@
 | Sanity CMS | ✅ | Klien, Queries (GROQ) artikel, FAQ, cabang, testimoni aktif di halaman frontend. |
 | Resend Email | ✅ | API Route `/api/contact` & `/api/booking` terintegrasi dengan library `resend`. |
 | reCAPTCHA v3 | ✅ | Server-side token verification di API routes. |
-| sitemap.xml | ✅ | Sitemap dinamis (`sitemap.ts`) memuat rute statis & post Sanity otomatis. |
+| sitemap.xml | ✅ | Sitemap dinamis (`sitemap.ts`) memuat rute statis, dinamis, dan rute legal otomatis. |
 | robots.txt | ✅ | Aturan crawl (`robots.ts`) mengizinkan bot dan menautkan sitemap. |
 | Schema.org | ✅ | Structured data JSON-LD (`FinancialService` + `LocalBusiness`) terpasang di Beranda. |
 | Vercel Analytics | ✅ | Diimplementasikan menggunakan @vercel/analytics. |
@@ -86,6 +86,22 @@
     *   *Analytics Integration:* Mengimplementasikan Vercel Analytics (`@vercel/analytics`) dan Google Analytics 4 (`@next/third-parties/google`) di root layout untuk production environment.
     *   *Company Info Update:* Memperbarui data alamat (ITC Permata Hijau), nomor WhatsApp (0822-4666-7301), dan jam operasional baru. Melakukan refaktorisasi pada `SITE_CONFIG` untuk menyajikan data alamat secara terstruktur demi kebersihan data JSON-LD dan tampilan halaman Lokasi secara dinamis. Unit test disesuaikan dan lulus 100% dengan branch coverage di atas 91%.
     *   *Logo Integration:* Menyalin file `permataValasLogo.png` dari root ke `public/images/logo.png` dan memetakan komponen Next.js `Image` pada header dan footer untuk menampilkan logo resmi secara konsisten.
+
+### Sesi 3 — 2026-06-20 (Sesi Saat Ini)
+*   **Penyelesaian Kepatuhan Legal (BI Compliance):**
+    *   *Kebijakan Privasi:* Membuat halaman statis `/kebijakan-privasi` (`src/app/(site)/kebijakan-privasi/page.tsx`) berisi informasi pelindungan data pribadi nasabah, prinsip mengenali nasabah (KYC), serta anti pencucian uang (AML) sesuai regulasi BI.
+    *   *Syarat & Ketentuan:* Membuat halaman statis `/syarat-ketentuan` (`src/app/(site)/syarat-ketentuan/page.tsx`) berisi pedoman transaksi, kewajiban penyertaan dokumen pendukung (underlying document) untuk nilai transaksi ekuivalen $\ge$ USD 25,000, serta disclaimer fluktuasi kurs valas.
+    *   *E2E Test Fixes:* Menambahkan 2 test case E2E Playwright baru untuk memverifikasi keterbacaan halaman kebijakan-privasi dan syarat-ketentuan secara headless. Memperbaiki error strict-mode Playwright dengan merelasikan locator teks secara unik, menyelaraskan pencocokan alamat gerai (`Mall ITC Permata Hijau` menggantikan alamat dummy `SCBD` lama), serta menambahkan pengisian email `#booking-email` di dalam tes reservasi agar formulir lolos validasi HTML5.
+    *   *Build Verification:* Verifikasi build Next.js produksi dan seluruh 8 pengujian Playwright E2E lulus 100% dengan sukses.
+*   **Pembaruan Cabang Utama "SCBD" Menjadi "ITC Permata Hijau":**
+    *   *Penyelarasan Copywriting:* Mengubah seluruh penyebutan "Cabang Utama SCBD" menjadi "Cabang Utama ITC Permata Hijau" pada deskripsi metadata, judul card info, dan petunjuk akses (kendaraan pribadi & rute TransJakarta koridor 8) di halaman `/lokasi`.
+    *   *Halaman Core Lain:* Menyelaraskan teks "SCBD" menjadi "ITC Permata Hijau" pada deskripsi reservasi di halaman `/kontak`, info booking di halaman `/layanan`, serta pada testimoni nasabah di halaman Beranda (`/`).
+    *   *E2E Verification:* Seluruh 8 tes Playwright E2E berhasil lolos 100% dengan sukses menggunakan data rute yang diperbarui.
+*   **Pembaruan Petunjuk Akses Ke Gerai:**
+    *   *Rute Detil:* Menyunting petunjuk akses kendaraan pribadi (melewati gerbang utama Jl. Letjen Supomo / Jl. Arteri Permata Hijau ke parkir basement, lalu ke Lantai Dasar Blok C 18 No. 1 dekat Kopi Dari Hati).
+    *   *Transportasi Umum:* Memperbarui petunjuk Transjakarta (Halte BRT Permata Hijau Koridor 8) dan menambahkan informasi rute KRL Commuter Line (turun di Stasiun Kebayoran dilanjutkan transportasi daring 5-10 menit).
+    *   *Keamanan Transaksi:* Memasukkan jaminan privasi nasabah dengan fasilitas CCTV 24 jam dan tim sekuriti gedung yang berjaga ketat.
+    *   *Build & E2E Validation:* Berhasil di-build produksi dan lulus seluruh pengujian Playwright E2E.
 
 ---
 
