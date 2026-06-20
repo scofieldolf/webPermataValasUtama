@@ -36,6 +36,12 @@ describe("KalkCalc Component", () => {
 
     // Estimasi Rupiah yang dibayarkan nasabah (1000 * 16350 = Rp 16.350.000)
     expect(screen.getByText((content) => content.replace(/ /g, " ") === "Rp 16.350.000")).toBeInTheDocument();
+
+    const sellButton = screen.getByText("Saya Mau Jual Valas");
+    fireEvent.click(sellButton);
+
+    // Rate Beli USD adalah Rp 16.250,00
+    expect(screen.getByText(/1 USD = Rp 16.250,00/)).toBeInTheDocument();
   });
 
   it("should calculate correctly when custom nominal is typed", () => {
@@ -72,6 +78,16 @@ describe("KalkCalc Component", () => {
 
     // Estimasi Rupiah untuk 1000 KRW -> (1000 * 11.8) / 1000 = Rp 11,8
     expect(screen.getByText((content) => content.replace(/ /g, " ") === "Rp 11,8")).toBeInTheDocument();
+  });
+
+  it("should handle invalid or empty nominal input gracefully", () => {
+    render(<KalkCalc />);
+
+    const amountInput = screen.getByLabelText("Nominal Valas");
+    fireEvent.change(amountInput, { target: { value: "" } });
+
+    // Estimasi Rupiah yang diterima nasabah harus Rp 0 (0 * 16250 = Rp 0)
+    expect(screen.getByText("Rp 0")).toBeInTheDocument();
   });
 
   it("should build dynamic WhatsApp CTA links correctly", () => {
