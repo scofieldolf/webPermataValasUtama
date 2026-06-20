@@ -40,26 +40,17 @@ export function KalkCalc() {
 
     if (currency === "JPY") {
       // JPY biasanya dikutip per 100 Yen
-      if (type === "beli") {
-        setResult((numericAmount * activeRate) / 100);
-      } else {
-        setResult((numericAmount * activeRate) / 100);
-      }
+      setResult((numericAmount * activeRate) / 100);
     } else if (currency === "KRW") {
       // KRW biasanya dikutip per 1000 Won
-      if (type === "beli") {
-        setResult((numericAmount * activeRate) / 1000);
-      } else {
-        setResult((numericAmount * activeRate) / 1000);
-      }
+      setResult((numericAmount * activeRate) / 1000);
     } else {
       setResult(numericAmount * activeRate);
     }
   }, [amount, currency, type, activeRate]);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/[^0-9.]/g, "");
-    setAmount(rawValue);
+    setAmount(e.target.value);
   };
 
   return (
@@ -109,13 +100,13 @@ export function KalkCalc() {
           <label htmlFor="valas-amount" className="text-xs font-bold text-gray-600 block">
             Nominal Valas
           </label>
-          <div className="flex rounded-lg border border-gray-200 focus-within:ring-2 focus-within:ring-pv-gold-primary focus-within:border-transparent overflow-hidden">
+          <div className="flex rounded-lg border border-gray-200 overflow-hidden bg-white">
             {/* Dropdown Valas */}
             <select
               id="valas-currency"
               value={currency}
               onChange={(e) => setCurrency(e.target.value as KodeMataUang)}
-              className="bg-gray-50 px-3 py-3 border-r border-gray-200 text-sm font-bold text-pv-navy-deep focus:outline-none cursor-pointer"
+              className="bg-gray-50 px-3 py-3 border-r border-gray-200 text-sm font-bold text-pv-navy-deep focus:outline-none focus:ring-2 focus:ring-pv-gold-primary focus:z-10 cursor-pointer rounded-l-lg"
             >
               {Object.keys(rateCalculatorMap).map((code) => (
                 <option key={code} value={code}>
@@ -126,11 +117,13 @@ export function KalkCalc() {
             {/* Input Nominal */}
             <input
               id="valas-amount"
-              type="text"
+              type="number"
+              min="0"
+              step="any"
               value={amount}
               onChange={handleAmountChange}
               placeholder="0.00"
-              className="w-full px-4 py-3 text-sm font-mono focus:outline-none text-pv-navy-deep"
+              className="flex-1 min-w-0 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-pv-gold-primary focus:z-10 text-pv-navy-deep rounded-r-lg"
             />
           </div>
           <span className="text-[11px] text-gray-400 block italic leading-none pt-0.5">

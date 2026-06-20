@@ -11,8 +11,17 @@ export default function KontakPage() {
   const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success">("idle");
 
   // State untuk formulir Booking Kurs
-  const [bookingForm, setBookingForm] = useState({ nama: "", telepon: "", valas: "USD", nominal: "", tipe: "beli" });
+  const [bookingForm, setBookingForm] = useState({
+    nama: "",
+    email: "",
+    telepon: "",
+    valas: "USD",
+    nominal: "",
+    tipe: "beli",
+    note: "",
+  });
   const [bookingStatus, setBookingStatus] = useState<"idle" | "sending" | "success">("idle");
+  const [bookingCode, setBookingCode] = useState("");
 
   // State untuk FAQ Accordion (indeks FAQ yang terbuka)
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null);
@@ -30,9 +39,20 @@ export default function KontakPage() {
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setBookingStatus("sending");
+    const code = `PV-${Math.floor(100000 + Math.random() * 900000)}`;
     // Simulasi respons server 1.5 detik
     setTimeout(() => {
       setBookingStatus("success");
+      setBookingCode(code);
+      setBookingForm({
+        nama: "",
+        email: "",
+        telepon: "",
+        valas: "USD",
+        nominal: "",
+        tipe: "beli",
+        note: "",
+      });
     }, 1500);
   };
 
@@ -197,13 +217,16 @@ export default function KontakPage() {
                 <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
                 <div>
                   <h4 className="font-bold text-emerald-800 text-sm">Reservasi Anda Terdaftar</h4>
-                  <p className="text-[11px] text-emerald-700 font-mono mt-1 font-semibold">Kode Booking: PV-{Math.floor(100000 + Math.random() * 900000)}</p>
+                  <p className="text-[11px] text-emerald-700 font-mono mt-1 font-semibold">Kode Booking: {bookingCode}</p>
                 </div>
                 <p className="text-xs text-emerald-600 leading-relaxed">
                   Staf konter utama kami akan segera menghubungi Anda melalui WhatsApp atau telepon untuk mengonfirmasi ketersediaan nominal dan jam pengambilan valuta asing di gerai.
                 </p>
                 <button
-                  onClick={() => setBookingStatus("idle")}
+                  onClick={() => {
+                    setBookingStatus("idle");
+                    setBookingCode("");
+                  }}
                   className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-pv-navy-deep text-white text-xs font-bold"
                 >
                   Buat Reservasi Baru
@@ -242,7 +265,7 @@ export default function KontakPage() {
                   </div>
                 </div>
 
-                {/* Form Nama & Telepon */}
+                {/* Form Nama, Email, & Telepon */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label htmlFor="booking-name" className="text-xs font-bold text-gray-600 block">
@@ -259,6 +282,20 @@ export default function KontakPage() {
                     />
                   </div>
                   <div className="space-y-1">
+                    <label htmlFor="booking-email" className="text-xs font-bold text-gray-600 block">
+                      Alamat Email *
+                    </label>
+                    <input
+                      id="booking-email"
+                      type="email"
+                      required
+                      value={bookingForm.email}
+                      onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
+                      placeholder="nama@email.com"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-pv-gold-primary text-pv-navy-deep"
+                    />
+                  </div>
+                  <div className="space-y-1 sm:col-span-2">
                     <label htmlFor="booking-phone" className="text-xs font-bold text-gray-600 block">
                       Nomor WhatsApp *
                     </label>
@@ -308,6 +345,21 @@ export default function KontakPage() {
                       className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-pv-gold-primary text-pv-navy-deep"
                     />
                   </div>
+                </div>
+
+                {/* Note / Catatan */}
+                <div className="space-y-1">
+                  <label htmlFor="booking-note" className="text-xs font-bold text-gray-600 block">
+                    Catatan Reservasi
+                  </label>
+                  <textarea
+                    id="booking-note"
+                    rows={3}
+                    value={bookingForm.note}
+                    onChange={(e) => setBookingForm({ ...bookingForm, note: e.target.value })}
+                    placeholder="Contoh: pecahan nominal besar, jam rencana penjemputan, dll."
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-pv-gold-primary text-pv-navy-deep resize-none"
+                  />
                 </div>
 
                 <div className="text-[10px] text-gray-400 italic bg-gray-50 p-3 rounded-lg border border-gray-100 leading-normal">

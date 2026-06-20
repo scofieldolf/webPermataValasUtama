@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, User, ArrowRight } from "lucide-react";
-import { client, urlFor } from "@/lib/sanity/client";
+import { client, urlFor, MOCK_POSTS } from "@/lib/sanity/client";
 import { ALL_POSTS_QUERY } from "@/lib/sanity/queries";
 import type { BlogPost, BlogPostCategory } from "@/types/blog";
 
@@ -56,6 +56,11 @@ export default async function InsightPage() {
   } catch (error) {
     // Graceful error handling in case Sanity API is unreachable
     posts = [];
+  }
+
+  // Jika data Sanity kosong (misalnya CMS tidak aktif/terkoneksi), gunakan mock data fallback
+  if (!posts || posts.length === 0) {
+    posts = MOCK_POSTS as BlogPost[];
   }
 
   // Get primary category details
