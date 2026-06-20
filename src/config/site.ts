@@ -34,6 +34,7 @@ export const SITE_CONFIG = {
     { label: "Beranda", href: "/" },
     { label: "Kurs Hari Ini", href: "/kurs" },
     { label: "Layanan", href: "/layanan" },
+    { label: "Insights", href: "/insight" },
     { label: "Tentang Kami", href: "/tentang" },
     { label: "Lokasi Cabang", href: "/lokasi" },
     { label: "Hubungi Kami", href: "/kontak" },

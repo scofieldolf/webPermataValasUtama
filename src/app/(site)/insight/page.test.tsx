@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { client } from "@/lib/sanity/client";
+import { client, MOCK_POSTS } from "@/lib/sanity/client";
 
 // Mock next-sanity dan client
 jest.mock("next-sanity", () => ({
@@ -8,14 +8,39 @@ jest.mock("next-sanity", () => ({
   groq: (strings: TemplateStringsArray, ...values: any[]) => String.raw({ raw: strings }, ...values),
 }));
 
-jest.mock("@/lib/sanity/client", () => ({
-  client: {
-    fetch: jest.fn(),
-  },
-  urlFor: () => ({
-    url: () => "http://mock-image-url.com",
-  }),
-}));
+jest.mock("@/lib/sanity/client", () => {
+  const mockPosts = [
+    {
+      _id: "mock-1",
+      title: "Tips Aman Menukarkan Uang Kertas Asing di Jakarta",
+      slug: { _type: "slug", current: "tips-aman-tukar-valas" },
+      excerpt: "Berikut ini adalah panduan praktis dan tips penting bagi nasabah perorangan sebelum menukarkan mata uang asing di gerai money changer resmi.",
+      publishedAt: "2026-06-18T10:00:00Z",
+      categories: ["tips-valas"],
+      author: { name: "Diana Ningsih" },
+      body: [
+        {
+          _type: "block",
+          children: [
+            {
+              _type: "span",
+              text: "Menukarkan uang asing di money changer resmi berizin Bank Indonesia adalah langkah utama untuk menghindari peredaran uang palsu dan mendapatkan kurs terbaik."
+            }
+          ]
+        }
+      ]
+    }
+  ];
+  return {
+    client: {
+      fetch: jest.fn(),
+    },
+    urlFor: () => ({
+      url: () => "http://mock-image-url.com",
+    }),
+    MOCK_POSTS: mockPosts,
+  };
+});
 
 // Mock next/image agar tidak melempar warning non-boolean fill
 jest.mock("next/image", () => {
@@ -149,22 +174,43 @@ describe("Insight Page (/insight)", () => {
     expect(screen.getByText("Permata Valas Utama")).toBeInTheDocument(); // placeholder text
   });
 
-  it("should handle error in client fetch gracefully", async () => {
+  it("should handle error in client fetch gracefully and fallback to MOCK_POSTS", async () => {
     // Simulasikan kegagalan API Sanity client.fetch
     (client.fetch as jest.Mock).mockRejectedValue(new Error("Database connection error"));
 
     const ResolvedPage = await InsightPage();
     render(ResolvedPage);
 
-    expect(screen.getByText("Belum ada artikel yang diterbitkan.")).toBeInTheDocument();
+    expect(screen.getByText("Tips Aman Menukarkan Uang Kertas Asing di Jakarta")).toBeInTheDocument();
+    expect(screen.getByText("Diana Ningsih")).toBeInTheDocument();
   });
 
-  it("should render fallback text when there are no articles", async () => {
+  it("should fallback to MOCK_POSTS when there are no articles from client fetch", async () => {
     (client.fetch as jest.Mock).mockResolvedValue([]);
 
     const ResolvedPage = await InsightPage();
     render(ResolvedPage);
 
-    expect(screen.getByText("Belum ada artikel yang diterbitkan.")).toBeInTheDocument();
+    expect(screen.getByText("Tips Aman Menukarkan Uang Kertas Asing di Jakarta")).toBeInTheDocument();
+    expect(screen.getByText("Diana Ningsih")).toBeInTheDocument();
+  });
+
+  it("should render fallback text when there are no articles and MOCK_POSTS is empty", async () => {
+    (client.fetch as jest.Mock).mockResolvedValue([]);
+
+    // Simpan data asli
+    const originalMockPosts = [...MOCK_POSTS];
+
+    // Kosongkan array MOCK_POSTS
+    MOCK_POSTS.length = 0;
+
+    try {
+      const ResolvedPage = await InsightPage();
+      render(ResolvedPage);
+      expect(screen.getByText("Belum ada artikel yang diterbitkan.")).toBeInTheDocument();
+    } finally {
+      // Kembalikan ke semula
+      originalMockPosts.forEach(post => MOCK_POSTS.push(post));
+    }
   });
 });

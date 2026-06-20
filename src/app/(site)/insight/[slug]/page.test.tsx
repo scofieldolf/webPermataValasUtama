@@ -9,14 +9,39 @@ jest.mock("next-sanity", () => ({
   groq: (strings: TemplateStringsArray, ...values: any[]) => String.raw({ raw: strings }, ...values),
 }));
 
-jest.mock("@/lib/sanity/client", () => ({
-  client: {
-    fetch: jest.fn(),
-  },
-  urlFor: () => ({
-    url: () => "http://mock-image-url.com",
-  }),
-}));
+jest.mock("@/lib/sanity/client", () => {
+  const mockPosts = [
+    {
+      _id: "mock-1",
+      title: "Tips Aman Menukarkan Uang Kertas Asing di Jakarta",
+      slug: { _type: "slug", current: "tips-aman-tukar-valas" },
+      excerpt: "Berikut ini adalah panduan praktis...",
+      publishedAt: "2026-06-18T10:00:00Z",
+      categories: ["tips-valas"],
+      author: { name: "Diana Ningsih" },
+      body: [
+        {
+          _type: "block",
+          children: [
+            {
+              _type: "span",
+              text: "Menukarkan uang asing..."
+            }
+          ]
+        }
+      ]
+    }
+  ];
+  return {
+    client: {
+      fetch: jest.fn(),
+    },
+    urlFor: () => ({
+      url: () => "http://mock-image-url.com",
+    }),
+    MOCK_POSTS: mockPosts,
+  };
+});
 
 // Mock next/image agar tidak memicu warning React
 jest.mock("next/image", () => {
@@ -88,20 +113,40 @@ describe("Insight Detail Page (/insight/[slug])", () => {
     expect(screen.getByText("Kembali ke Insight")).toBeInTheDocument();
   });
 
-  it("should trigger notFound() when post is not found", async () => {
+  it("should trigger notFound() when post is not found and not in mock fallback", async () => {
     (client.fetch as jest.Mock).mockResolvedValue(null);
 
-    const ResolvedPage = await InsightDetailPage({ params });
+    const ResolvedPage = await InsightDetailPage({ params: { slug: "non-existent-slug" } });
     expect(ResolvedPage).toBeNull();
     expect(notFound).toHaveBeenCalled();
   });
 
-  it("should trigger notFound() when post fetch throws an error", async () => {
+  it("should trigger notFound() when post fetch throws an error and not in mock fallback", async () => {
     (client.fetch as jest.Mock).mockRejectedValue(new Error("Connection error"));
 
-    const ResolvedPage = await InsightDetailPage({ params });
+    const ResolvedPage = await InsightDetailPage({ params: { slug: "non-existent-slug" } });
     expect(ResolvedPage).toBeNull();
     expect(notFound).toHaveBeenCalled();
+  });
+
+  it("should render blog post details from mock fallback when post is not found in CMS", async () => {
+    (client.fetch as jest.Mock).mockResolvedValue(null);
+
+    const ResolvedPage = await InsightDetailPage({ params: { slug: "tips-aman-tukar-valas" } });
+    render(ResolvedPage);
+
+    expect(screen.getByText("Tips Aman Menukarkan Uang Kertas Asing di Jakarta")).toBeInTheDocument();
+    expect(screen.getByText("Diana Ningsih")).toBeInTheDocument();
+  });
+
+  it("should render blog post details from mock fallback when CMS fetch throws an error", async () => {
+    (client.fetch as jest.Mock).mockRejectedValue(new Error("Connection error"));
+
+    const ResolvedPage = await InsightDetailPage({ params: { slug: "tips-aman-tukar-valas" } });
+    render(ResolvedPage);
+
+    expect(screen.getByText("Tips Aman Menukarkan Uang Kertas Asing di Jakarta")).toBeInTheDocument();
+    expect(screen.getByText("Diana Ningsih")).toBeInTheDocument();
   });
 
   it("should generate proper metadata for the page", async () => {
@@ -132,6 +177,14 @@ describe("Insight Detail Page (/insight/[slug])", () => {
     const metadata = await generateMetadata({ params });
     expect(metadata.title).toBe("Judul Standar");
     expect(metadata.description).toBe("Ringkasan Standar");
+  });
+
+  it("should generate metadata from mock fallback when post is not found in CMS", async () => {
+    (client.fetch as jest.Mock).mockResolvedValue(null);
+
+    const metadata = await generateMetadata({ params: { slug: "tips-aman-tukar-valas" } });
+    expect(metadata.title).toBe("Tips Aman Menukarkan Uang Kertas Asing di Jakarta");
+    expect(metadata.description).toBe("Berikut ini adalah panduan praktis...");
   });
 
   it("should return empty metadata if post fetch throws an error", async () => {

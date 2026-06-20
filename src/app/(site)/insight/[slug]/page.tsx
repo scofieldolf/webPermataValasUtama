@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Calendar, User, ArrowLeft } from "lucide-react";
-import { client, urlFor } from "@/lib/sanity/client";
+import { client, urlFor, MOCK_POSTS } from "@/lib/sanity/client";
 import { POST_DETAIL_QUERY } from "@/lib/sanity/queries";
 import type { BlogPost } from "@/types/blog";
 import { PortableTextRenderer } from "@/components/shared/portable-text-renderer";
@@ -21,7 +21,13 @@ export const revalidate = 300;
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = params;
   try {
-    const post = await client.fetch<BlogPost | null>(POST_DETAIL_QUERY, { slug });
+    let post = await client.fetch<BlogPost | null>(POST_DETAIL_QUERY, { slug });
+
+    // Cari di mock jika di CMS kosong
+    if (!post) {
+      post = (MOCK_POSTS.find((p) => p.slug.current === slug) as BlogPost) || null;
+    }
+
     if (!post) return {};
 
     const mainImageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
@@ -57,6 +63,11 @@ export default async function InsightDetailPage({ params }: PageProps) {
     post = await client.fetch<BlogPost | null>(POST_DETAIL_QUERY, { slug });
   } catch (error) {
     post = null;
+  }
+
+  // Jika tidak ditemukan di Sanity CMS, cari di data fallback statis lokal
+  if (!post) {
+    post = (MOCK_POSTS.find((p) => p.slug.current === slug) as BlogPost) || null;
   }
 
   if (!post) {
